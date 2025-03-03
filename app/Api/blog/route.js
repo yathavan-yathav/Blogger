@@ -13,12 +13,21 @@ const LoadDB = async()=> {
 LoadDB();
 
 
-
+//API End point to get all blogs
 export async function GET(request) {
+
+    const blogId = request.nextUrl.searchParams.get("id");
+    if(blogId){
+            const blog = await BlogModel.findById(blogId);
+            return NextResponse.json(blog);
+    }
     
-    return NextResponse.json({msg:"API Working"})
+    const blogs = await BlogModel.find({});
+
+    return NextResponse.json({blogs})
 }
 
+//API endpoint For Uploading Blogs
 export async function POST(request){
 
     const formData = await request.formData();
@@ -29,7 +38,7 @@ export async function POST(request){
     const buffer = Buffer.from(imageByteData);
     const path= `./public/${timestamp}_${image.name}`;
     await writeFile(path,buffer);
-    const imgUrl = '/${timestamp}_${image.name}';
+    const imgUrl = `/${timestamp}_${image.name}`;
     
         const blogData = {
             title: `${formData.get('title')}`,
@@ -37,7 +46,7 @@ export async function POST(request){
             category:`${formData.get('category')}`,
             author:`${formData.get('author')}`,
             image:`${imgUrl}`,
-            author_img:`${formData.get('authorImg')}`
+            author_img:`${formData.get('author_img')}`
         }
 
         await BlogModel.create(blogData);

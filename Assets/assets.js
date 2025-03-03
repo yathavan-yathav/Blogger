@@ -142,7 +142,7 @@ export const assets = {
     },
     {
         id:11,
-        title:"Unveiling the Secrets of Successful Startups in Technolgy",
+        title:"Unveiling the Secrets of Successful Startups in Technology",
         description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
         image:blog_pic_11,
         date:Date.now(),
