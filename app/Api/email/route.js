@@ -21,6 +21,7 @@ export async function GET(request) {
     return NextResponse.json({emails});
 }
 
+
 export async function DELETE(request) {
     const id = await request.nextUrl.searchParams.get("id");
     await EmailModel.findByIdAndDelete(id);
