@@ -1,6 +1,7 @@
 'use client'
 import { assets, blog_data } from '@/Assets/assets';
 import Footer from '@/Components/Footer';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, {use, useEffect, useState} from 'react'
@@ -9,15 +10,14 @@ const page = ({params}) => {
     const resolvedParams = use(params)
     const [data,setData] = useState(null);
 
-    const fetchBlogData = () =>{
-         for(let i=0;i<blog_data.length;i++)
-            {
-            if(Number(resolvedParams.id)===blog_data[i].id) {
-                 setData(blog_data[i]);
-                 console.log(blog_data[i]);
-                 break;
-            }
-         }
+    const fetchBlogData = async () =>{
+       const response = await axios.get('/api/blog',{
+        params:{
+            id:params.id
+        }
+       })
+        setData(response.data);
+
     }
 
         useEffect(()=> {
@@ -45,13 +45,13 @@ const page = ({params}) => {
         <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
         <h1 className='my-8 text-[26px] font-semibold'>Introduction</h1>
         <p>{data.description}</p>
-        <h3 className='my-5 text-[18px] font semibold'>Step:1 fuck it mothefucker</h3>
+        <h3 className='my-5 text-[18px] font semibold'>Step:1 Mind the way</h3>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-        <h3 className='my-5 text-[18px] font semibold'>Step:2 fuck it mothefucker</h3>
+        <h3 className='my-5 text-[18px] font semibold'>Step:2 Face it the way intendeed</h3>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-        <h3 className='my-5 text-[18px] font semibold'>Step:3 fuck it mothefucker</h3>
+        <h3 className='my-5 text-[18px] font semibold'>Step:3 Kill yourself</h3>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
         <h3 className='my-5 text-[18px] font semibold'>Conclusion</h3>
