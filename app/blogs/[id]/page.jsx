@@ -1,32 +1,42 @@
-'use client'
+'use client';
+
 import { assets, blog_data } from '@/Assets/assets';
 import Footer from '@/Components/Footer';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import React, {use, useEffect, useState} from 'react'
 
-const page = ({params}) => {
-    const resolvedParams = use(params)
+const BlogPage = () => {
+    const params = useParams();
     const [data,setData] = useState(null);
 
+    useEffect(()=> {
+        if(!params?.id) return;
+       
+
+
     const fetchBlogData = async () =>{
-       const response = await axios.get('/api/blog',{
-        params:{
-            id:params.id
+        try{
+            const response = await axios.get('/api/blog',{
+                params:{
+                    id:params.id
+                }
+               });
+                setData(response.data);        
+        } catch(error){
+            console.error("Error fetching blog data:",error);
         }
-       })
-        setData(response.data);
+    };
 
-    }
+    fetchBlogData();
+    },[params.id]);
 
-        useEffect(()=> {
-            fetchBlogData();
-        },[resolvedParams.id])
-
+       if (!data) return <p>Loading...</p>;
 
   return (data?<>
-    <div className='bg-grey-200 py-5 px-5 md:px-12 lg:px-28'>
+    <div className='bg-grey-200 py-5 px-5 md:px-12 lg:px-[30px]'>
         <div className='flex justify-between items-center'>
             <Link href='/' >
             <Image src={assets.logo} width={180} alt='' className='w-[130px] sm:w-auto'/>
@@ -41,7 +51,7 @@ const page = ({params}) => {
             <p className='mt-1 pb-2 text-lg max-w-[740px] mx-auto'>{data.author}</p>
         </div>
     </div>
-    <div className='flex flex-col justify-center mx-5 max-w-[800px] md:max-auto mt-[-100px] mb-10'>
+    <div className='flex flex-col justify-center mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
         <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
         <h1 className='my-8 text-[26px] font-semibold'>Introduction</h1>
         <p>{data.description}</p>
@@ -71,4 +81,4 @@ const page = ({params}) => {
   )
 }
 
-export default page
+export default BlogPage;
