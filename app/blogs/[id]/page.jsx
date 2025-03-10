@@ -55,7 +55,8 @@ const BlogPage = () => {
             <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
             <h1 className='my-8 text-[26px] font-semibold'>Introduction</h1>
             <p>{data.description}</p>
-            <h3 className='my-5 text-[18px] font semibold'>Step:1 Mind the way</h3>
+
+            {/* <h3 className='my-5 text-[18px] font semibold'>Step:1 Mind the way</h3>
             <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
             <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
             <h3 className='my-5 text-[18px] font semibold'>Step:2 Face it the way intendeed</h3>
@@ -66,6 +67,9 @@ const BlogPage = () => {
             <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
             <h3 className='my-5 text-[18px] font semibold'>Conclusion</h3>
             <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
+             */}
+
+            <p>{data.content}</p>
             <div className='my-24 '>
                 <p className='text-black font-semibold my-4'>Share this article on social media</p>
                 <div className='flex'>

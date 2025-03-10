@@ -41,6 +41,7 @@ export async function POST(request){
         const blogData = {
             title: `${formData.get('title')}`,
             description:`${formData.get('description')}`,
+            content:`${formData.get('content')}`,
             category:`${formData.get('category')}`,
             author:`${formData.get('author')}`,
             image:`${imgUrl}`,

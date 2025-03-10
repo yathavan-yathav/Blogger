@@ -12,6 +12,7 @@ const page = () => {
     const [data, setData] = useState({
         title:"",
         description:"",
+        content:"",
         category:"Startup",
         author:"Alex",
         author_img:"/author_img.png"
@@ -29,6 +30,7 @@ const page = () => {
     const formData = new FormData();
     formData.append('title',data.title);
     formData.append('description',data.description);
+    formData.append('content',data.content);
     formData.append('category',data.category);
     formData.append('author',data.author);
     formData.append('author_img',data.author_img);
@@ -40,6 +42,7 @@ const page = () => {
         setData({
             title:"",
             description:"",
+            content:"",
             category:"Startup",
             author:"Alex",
             author_img:"/author_img.png"
@@ -62,7 +65,9 @@ const page = () => {
     <p className= 'text-xl mt-4'>Blog title </p>
     <input name='title' onChange={onChangeHandler} value={data.title} className='w-full sm:w-[500px] mt-4 px-4 py-3 border ' type="text" placeholder='Type here' required />
     <p className= 'text-xl mt-4'>Blog description </p>
-    <textarea name='description' onChange={onChangeHandler} value={data.description} className='w-full sm:w-[500px] mt-4 px-4 py-3 border ' type="text" placeholder='Write content here'  rows={6} required />
+    <textarea name='description' onChange={onChangeHandler} value={data.description} className='w-full sm:w-[500px] mt-4 px-4 py-3 border ' type="text" placeholder='Write brief Description here'  rows={6} required />
+    <p className= 'text-xl mt-4'>Blog Content </p>
+    <textarea name='content' onChange={onChangeHandler} value={data.content} className='w-full sm:w-[500px] mt-4 px-4 py-3 border ' type="text" placeholder='Write content here'  rows={10} required />
     <p className='text-xl mt-4'>Blog category</p>
     <select name="category" onChange={onChangeHandler} value={data.category} className='w-40 mt-4 px-4 py-3 border text-gray-500'>
     <option value="Startup">Startup</option>
