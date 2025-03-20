@@ -35,8 +35,11 @@ const BlogPage = () => {
 
     if (!data) return <p>Loading...</p>;
 
+    const shareUrl = encodeURIComponent(`https://localhost:3000/blog/${params.id}`);
+    const shareText = encodeURIComponent(data.title);
+
     return (data ? <>
-        <div className='bg-gray-200  mx-10 py-5 px-5 md:px-12 lg:px-[30px]'>
+        <div className='bg-gray-200 mx-0 md:mx-6 lg:mx-10 py-5 px-5 md:px-12 lg:px-[30px]'>
             <div className='flex justify-between items-center'>
                 <Link href='/' >
                     <Image src={assets.logo} width={180} alt='' className='w-[130px] sm:w-auto' />
@@ -55,29 +58,37 @@ const BlogPage = () => {
             <Image className='border-4 border-white' src={data.image} width={1280} height={720} alt='' />
             <h1 className='my-8 text-[26px] font-semibold'>Introduction</h1>
             <p>{data.description}</p>
-
-            {/* <h3 className='my-5 text-[18px] font semibold'>Step:1 Mind the way</h3>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <h3 className='my-5 text-[18px] font semibold'>Step:2 Face it the way intendeed</h3>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <h3 className='my-5 text-[18px] font semibold'>Step:3 Kill yourself</h3>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-            <h3 className='my-5 text-[18px] font semibold'>Conclusion</h3>
-            <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit doloremque cupiditate voluptatum suscipit commodi ad! Consequuntur, distinctio nobis adipisci sequi sunt ipsum praesentium accusamus minus harum, incidunt nam saepe libero.</p>
-             */}
-
+           <br/>
+           <br/>
             <p>{data.content}</p>
             <div className='my-24 '>
                 <p className='text-black font-semibold my-4'>Share this article on social media</p>
-                <div className='flex'>
+                {/* <div className='flex'>
                     <Image src={assets.facebook_icon} width={50} alt='' />
                     <Image src={assets.twitter_icon} width={50} alt='' />
                     <Image src={assets.googleplus_icon} width={50} alt='' />
 
-                </div>
+                </div> */}
+                <div className='flex gap-4'>
+                        {/* Facebook */}
+                        <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                            <Image src={assets.facebook_icon} width={60} height={60} alt='Share on Facebook' className="cursor-pointer" />
+                        </a>
+
+                        {/* Twitter (X) */}
+                        <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`} target="_blank" rel="noopener noreferrer">
+                        <div className='bg-black p-0 rounded-full'>
+                        <Image src={assets.x_icon} width={50} height={50} alt='Share on LinkedIn' className="cursor-pointer" />
+                        </div>
+                        </a>
+
+                        {/* LinkedIn */}
+                        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">
+                        <div className='bg-black p-0 rounded-full'>
+                        <Image src={assets.linkedIn_icon} width={50} height={50} alt='Share on LinkedIn' className="cursor-pointer" />
+                        </div>
+                        </a>
+                    </div>
             </div>
         </div>
         <Footer />
