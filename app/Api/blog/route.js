@@ -6,8 +6,7 @@ const fs = require('fs');
 
 const LoadDB = async()=> {
     await ConnectDB();
-}
-
+};
 LoadDB();
 
 
@@ -51,9 +50,19 @@ export async function POST(request){
         await BlogModel.create(blogData);
         console.log("Blog Saved");
 
+        const title = formData.get('title');
+        const description=formData.get('description');
+
+        await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send-email`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, description })
+        });
+        
 
 
-    return NextResponse.json({success:true, msg:"Blog added"})
+
+    return NextResponse.json({success:true, msg:"Blog added"});
 }
 
 //Creating API End point to delete blog
@@ -61,7 +70,7 @@ export async function POST(request){
 export async function DELETE(request){
     const id = await request.nextUrl.searchParams.get('id');
     const blog = await BlogModel.findById(id);
-    fs.unlink('./public${blog.image}',()=>{});
+    fs.unlink(`./public${blog.image}`,()=>{});
     await BlogModel.findByIdAndDelete(id);
     return NextResponse.json({msg:"Blog Deleted"})
 }
